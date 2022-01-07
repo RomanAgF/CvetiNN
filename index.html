@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Vue.js Pet Depot</title>
+    <title>Рассада цветов в Нижнем Новгороде от Анны Савельевой, +7(952)782-82-34</title>
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -22,12 +22,12 @@
             <div class="row">
                 <div class="col-md-2 col-md-offset-1">
                     <figure>
-                        <img v-bind:src="product.image">
+                        <img v-bind:src="product.keyart">
                     </figure>
                 </div>
                 <div class="col-md-6 col-md-offset-2 description">
                     <h1 v-text="product.title"></h1>
-                    <p v-html="product.description"></p>
+                    <p v-html="product.annotation"></p>
                     <p class="price">
                         {{product.price | formatPrice}}
                     </p>
@@ -44,24 +44,24 @@
     var webstore = new Vue({
         el: '#app',
         data: {
-            sitename: "Vue.js Pet Depot",
+            sitename: "Цветы в Нижнем Новгороде",
             product: {
                 id: 1001,
-                title: "Cat Food, 25lb bag",
-                description: "A 25 pound bag of <em>irresistible</em>," + " organic goodness for your cat.",
-                price: 2000,
-                image: "assets/images/product-fullsize.png",
+                title: "Гортензии двухлетние",
+                annotation: "Пышные шапковидные соцветия в диаметре 15-30 см от зеленоватого до кремовато-белого оттенка. Цветёт с июня по конец сентября. Саженцы в трёхлитровом горшке.",
+                price: 350,  
+                keyart: "assets/images/gortDvux0.png",
             },
         },
         filters: {
-            formatPrice(price) { //#B
+            formatPrice(price) {  //каждые 3 разряда разд-ся пробелом, сотые части отделены .
                 if (!parseInt(price)) {
-                    return "";
-                } //#C
-                if (price > 99999) { //#D
-                    var priceString = (price / 100).toFixed(2); //#E
-                    var priceArray = priceString.split("").reverse(); //#F
-                    var index = 3; //#F
+                    return "данные были в виде строки или ошибка";
+                }
+                if (price > 99999) { // число в центах или копейках
+                    var priceString = (price / 100).toFixed(2); 
+                    var priceArray = priceString.split("").reverse(); 
+                    var index = 3; 
                     while (priceArray.length > index + 3) { //#F
                         priceArray.splice(index + 3, 0, ","); //#F
                         index += 4; //#F
